@@ -28,6 +28,9 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, orphanRemoval = false)
     private List<StartupUser> listStartupUsers = new ArrayList<>();
 
+
+    public User(){}
+
     public User(String firstName, String lastName, String username, String password) {
         this.firstName = firstName;
         this.lastName = lastName;

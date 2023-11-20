@@ -9,12 +9,12 @@ public class StartupUser {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "user")
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user.id")
     private User user;
 
-    @Column(name = "startup")
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "startup.id")
     private Startup startup;
@@ -22,6 +22,7 @@ public class StartupUser {
     @Column(name = "is_author")
     private boolean isAuthor;
 
+    public StartupUser(){}
     public StartupUser(User user, Startup startup, boolean isAuthor) {
         this.user = user;
         this.startup = startup;

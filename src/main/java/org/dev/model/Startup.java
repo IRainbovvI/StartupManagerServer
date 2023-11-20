@@ -22,6 +22,7 @@ public class Startup {
     @OneToMany(mappedBy = "startup", fetch = FetchType.LAZY, orphanRemoval = false)
     private List<StartupUser> listStartupUsers = new ArrayList<>();
 
+    public Startup(){}
     public Startup(String title, String description, List<StartupUser> listStartupUsers) {
         this.title = title;
         this.description = description;
