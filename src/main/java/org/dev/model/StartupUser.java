@@ -59,7 +59,7 @@ public class StartupUser {
         this.startup = startup;
     }
 
-    public boolean isAuthor() {
+    public boolean getIsAuthor() {
         return isAuthor;
     }
 
