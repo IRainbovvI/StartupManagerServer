@@ -1,13 +1,10 @@
 package org.dev.controller;
 
 import org.dev.model.Startup;
-import org.dev.model.User;
 import org.dev.repository.StartupRepository;
-import org.dev.repository.StartupUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -48,7 +45,7 @@ public class StartupController {
     @PostMapping("/startups")
     public ResponseEntity<Startup> createStartup(@RequestBody Startup startup) {
         try {
-            Startup _startup = startupRepository.save(new Startup(startup.getTitle(), startup.getDescription(), startup.getListStartupUsers()));
+            Startup _startup = startupRepository.save(new Startup(startup.getTitle(), startup.getDescription()));
             return new ResponseEntity<>(_startup, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

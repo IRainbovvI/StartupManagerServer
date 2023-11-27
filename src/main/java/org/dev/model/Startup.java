@@ -6,27 +6,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="startups")
+@Table(name = "startups")
 public class Startup {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name="title")
+    @Column(name = "title")
     private String title;
 
-    @Column(name="description")
+    @Column(name = "description")
     private String description;
 
-    @Column(name="users")
-    @OneToMany(mappedBy = "startup", fetch = FetchType.LAZY, orphanRemoval = false)
-    private List<StartupUser> listStartupUsers = new ArrayList<>();
 
-    public Startup(){}
-    public Startup(String title, String description, List<StartupUser> listStartupUsers) {
+    public Startup() {
+    }
+
+    public Startup(String title, String description) {
         this.title = title;
         this.description = description;
-        this.listStartupUsers = listStartupUsers;
     }
 
     @Override
@@ -35,7 +33,7 @@ public class Startup {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", listStartupUsers=" + listStartupUsers +
+                ", listStartupUsers=" +
                 '}';
     }
 
@@ -59,11 +57,4 @@ public class Startup {
         this.description = description;
     }
 
-    public List<StartupUser> getListStartupUsers() {
-        return listStartupUsers;
-    }
-
-    public void setListStartupUsers(List<StartupUser> listStartupUsers) {
-        this.listStartupUsers = listStartupUsers;
-    }
 }

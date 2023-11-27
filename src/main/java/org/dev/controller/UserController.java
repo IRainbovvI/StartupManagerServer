@@ -20,7 +20,7 @@ public class UserController {
     UserRepository userRepository;
 
     @GetMapping("/users")
-    public ResponseEntity<List<User>> getAllUsers(@RequestParam(required = false) String username) {
+    public ResponseEntity<List<User>> getAllUsers() {
         try {
             List<User> users = new ArrayList<User>();
 
@@ -46,7 +46,7 @@ public class UserController {
     @PostMapping("/users")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         try {
-            User _user = userRepository.save(new User(user.getFirstName(), user.getLastName(), user.getUsername(), new BCryptPasswordEncoder().encode(user.getPassword()) ));
+            User _user = userRepository.save(new User(user.getFirstName(), user.getLastName(), user.getEmail(), new BCryptPasswordEncoder().encode(user.getPassword()) ));
             return new ResponseEntity<>(_user, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
