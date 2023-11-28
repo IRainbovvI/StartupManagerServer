@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>My Startups</title>
+    <title>All Startups</title>
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
@@ -11,16 +11,12 @@
 <div class="container text-center">
     <div>
         <form th:action="@{/logout}" method="post">
-            <p>
-                Welcome <b th:text="${currentUser.firstName}">User</b>
-            </p>
             <input type="submit" value="Sign Out" />
-            <a th:href="@{/all_startups}" class="btn btn-primary">All Startups</a>
-            <a th:href="@{/add}" class="btn btn-primary">Add new Startup</a>
         </form>
+        <a th:href="@{/my_startups}" class="btn btn-primary">My Startups</a>
     </div>
     <div>
-        <h1>List of My Startups</h1>
+        <h1>List of All Startups</h1>
     </div>
 
     <div>
@@ -30,18 +26,13 @@
                 <th>Startup ID</th>
                 <th>Title</th>
                 <th>Description</th>
-                <th>Manage</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="startup: ${currentUser.listStartups}">
+            <tr th:each="startup: ${startups}">
                 <td th:text="${startup.id}">Startup ID</td>
                 <td th:text="${startup.title}">Title</td>
                 <td th:text="${startup.description}">Description</td>
-                <td>
-                    <form th:action="@{/edit}" method="post"><input type="hidden" name="id" th:value="${startup.id}" /><input type="submit" value="Edit" class="btn btn-primary"/></form>
-                    <form th:action="@{/delete}" method="post"><input type="hidden" name="id" th:value="${startup.id}" /><input type="submit" value="Delete" class="btn btn-primary"/></form>
-                </td>
             </tr>
             </tbody>
         </table>

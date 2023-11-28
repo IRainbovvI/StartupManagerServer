@@ -51,7 +51,7 @@ public class AppController {
     }
 
     @GetMapping("/my_startups")
-    public String listStartups(Model model, Authentication authentication) {
+    public String listMyStartups(Model model, Authentication authentication) {
         model.addAttribute("currentUser", getAuthenticatedUser(authentication));
 
         return "my_startups";
@@ -112,6 +112,13 @@ public class AppController {
 
         model.addAttribute("currentUser", getAuthenticatedUser(authentication));
         return "redirect:/my_startups";
+    }
+
+    @GetMapping("/all_startups")
+    public String listAllStartups(Model model) {
+        model.addAttribute("startups", startupRepo.findAll());
+
+        return "all_startups";
     }
 
 
